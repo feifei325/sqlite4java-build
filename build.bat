@@ -3,6 +3,7 @@ curl -O -L https://bitbucket.org/almworks/sqlite4java/get/7b55b3eab690.zip
 jar xf 7b55b3eab690.zip
 curl -O -L "https://sourceforge.net/projects/swig/files/swigwin/swigwin-3.0.12/swigwin-3.0.12.zip/download"
 rename download swig.zip
+jar xf swig.zip
 mkdir src\main\java\com\almworks\sqlite4java
 mkdir src\main\java\javolution\util\stripped
 mkdir src\main\resources
