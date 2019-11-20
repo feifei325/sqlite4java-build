@@ -20,7 +20,7 @@ install:
       $env:Path +=";C:\maven\apache-maven-3.6.2\bin;%JAVA_HOME%\bin"
 build_script:
   - set PATH=%PATH%;%JAVA_HOME%\bin
-  - set VCPKG_ROOT=C:\projects\vcpkg
   - build.bat
   - vcpkg install sqlite3:x64-windows-static
+  - set VCPKG_ROOT=C:\projects\vcpkg
   - build-x64-vs-2017.bat
