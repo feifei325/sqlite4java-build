@@ -1,0 +1,25 @@
+version: 1.0.'{build}'
+
+image:
+ - Visual Studio 2017
+
+version: '{build}'
+
+environment:
+  matrix:
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+
+install:
+  - ps: |
+      Add-Type -AssemblyName System.IO.Compression.FileSystem
+      if (!(Test-Path -Path "C:\maven" )) {
+        (new-object System.Net.WebClient).DownloadFile(
+          'http://www.us.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.zip',
+          'C:\maven-bin.zip'
+        )
+        [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
+      }
+      $env:Path +=";C:\maven\apache-maven-3.6.2\bin;%JAVA_HOME%\bin"
+build_script:
+  - set PATH=%PATH%;%JAVA_HOME%\bin
+  - mvn build.bat
