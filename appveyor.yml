@@ -23,3 +23,10 @@ build_script:
   - build.bat
   - vcpkg install sqlite3:x64-windows-static
   - build-x64-vs-2017.bat
+  - build-x86-vs-2017.bat
+
+artifacts:
+  - path: build-x64\Release\sqlite4java.dll
+    name: sqlite4java x64
+  - path: build-x86\Release\sqlite4java.dll
+    name: sqlite4java x86
