@@ -55,6 +55,7 @@ build_script:
 
 test_script:
   - cmd: mvn -q surefire-report:report
+  - sh: mvn -q surefire-report:report
 
 after_test:
   - ps: |
