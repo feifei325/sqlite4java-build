@@ -11,7 +11,6 @@ mkdir src\test\java\com\almworks\sqlite4java
 mkdir src\test\resources
 mkdir native
 mkdir swig\stub\com\almworks\sqlite4java
-jar xf 7b55b3eab690.zip
 copy almworks-sqlite4java-7b55b3eab690\java\com\almworks\sqlite4java\*.java src\main\java\com\almworks\sqlite4java
 copy almworks-sqlite4java-7b55b3eab690\java\javolution\util\stripped\*.java src\main\java\javolution\util\stripped
 copy almworks-sqlite4java-7b55b3eab690\test\com\almworks\sqlite4java\*.java src\test\java\com\almworks\sqlite4java
