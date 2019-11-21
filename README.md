@@ -2,7 +2,7 @@
 
 [![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/sqlite4java-build.svg?label=Windows-GNU/Linux)](https://ci.appveyor.com/project/WebFolder/sqlite4java-build)
 
-[sqlite4java](https://bitbucket.org/almworks/sqlite4java/) built with sqlite3 3.30.1
+[sqlite4java](https://bitbucket.org/almworks/sqlite4java/) built with __sqlite3 3.30.1__
 
 ### Download
 
