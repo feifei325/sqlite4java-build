@@ -6,13 +6,14 @@
   <artifactId>sqlite4java</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <build>
+    <finalName>sqlite4java.jar</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <argLine>-Dsqlite4java.library.path=${project.basedir}</argLine>
+          <argLine>-Dsqlite4java.library.path=${project.basedir} -Djava.util.logging.config.file=logging.properties</argLine>
           <excludes>
             <exclude>com/almworks/sqlite4java/ExtensionLoadTests.java</exclude>
           </excludes>

@@ -49,3 +49,5 @@ artifacts:
     name: sqlite4java x64
   - path: build-x86\Release\sqlite4java-win32-x86.dll
     name: sqlite4java x86
+  - path: target\sqlite4java.jar
+    name: sqlite4java jar
