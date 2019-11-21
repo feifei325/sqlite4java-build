@@ -23,10 +23,14 @@ build_script:
   - build.bat
   - vcpkg install sqlite3:x64-windows-static
   - build-x64-vs-2017.bat
+  - vcpkg install sqlite3:x86-windows-static
   - build-x86-vs-2017.bat
-  - rename build-x64\Release\sqlite4java.dll build-x64\Release\sqlite4java-win32-x64.dll
-  - rename build-x86\Release\sqlite4java.dll build-x64\Release\sqlite4java-win32-x86.dll
-  - copy build-x64\Release\sqlite4java-win32-x64.dll .
+  - cd %APPVEYOR_BUILD_FOLDER%\build-x64\Release
+  - rename sqlite4java.dll sqlite4java-win32-x64.dll
+  - cd %APPVEYOR_BUILD_FOLDER%\build-x86\Release
+  - rename sqlite4java.dll sqlite4java-win32-x86.dll
+  - copy %APPVEYOR_BUILD_FOLDER%\build-x64\Release\sqlite4java-win32-x64.dll %APPVEYOR_BUILD_FOLDER%
+  - cd %APPVEYOR_BUILD_FOLDER%
   - mvn -q -DskipTests package
 
 test_script:
