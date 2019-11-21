@@ -36,7 +36,9 @@ build_script:
           ./vcpkg/vcpkg integrate install
           ./vcpkg/vcpkg install sqlite3:x64-linux
         fi
+  - sh: sudo apt-get -q --yes install swig
   - sh: cd $APPVEYOR_BUILD_FOLDER && ./build.sh
+  - sh: cp build/libsqlite4java-linux-amd64.so $APPVEYOR_BUILD_FOLDER/libsqlite4java-linux-amd64.so
   - cmd: set PATH=%PATH%;%JAVA_HOME%\bin
   - cmd: build.bat
   - cmd: vcpkg install sqlite3:x64-windows-static
@@ -64,8 +66,10 @@ after_test:
 
 artifacts:
   - path: build-x64\Release\sqlite4java-win32-x64.dll
-    name: sqlite4java x64
+    name: sqlite4java x64 Windows DLL
   - path: build-x86\Release\sqlite4java-win32-x86.dll
-    name: sqlite4java x86
+    name: sqlite4java x86 Windows DLL
   - path: target\sqlite4java.jar
     name: sqlite4java jar
+  - path: build/libsqlite4java-linux-amd64.so
+    name: sqlite4java x64 Linux SO
