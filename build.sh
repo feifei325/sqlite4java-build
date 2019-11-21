@@ -1,12 +1,12 @@
 curl -O -L https://bitbucket.org/almworks/sqlite4java/get/7b55b3eab690.zip
 unzip 7b55b3eab690.zip
-mkdir src/main/java/com/almworks/sqlite4java
-mkdir src/main/java/javolution/util/stripped
-mkdir src/main/resources
-mkdir src/test/java/com/almworks/sqlite4java
-mkdir src/test/resources
+mkdir -p src/main/java/com/almworks/sqlite4java
+mkdir -p src/main/java/javolution/util/stripped
+mkdir -p src/main/resources
+mkdir -p src/test/java/com/almworks/sqlite4java
+mkdir -p src/test/resources
 mkdir native
-mkdir swig/stub/com/almworks/sqlite4java
+mkdir -p swig/stub/com/almworks/sqlite4java
 cp almworks-sqlite4java-7b55b3eab690/java/com/almworks/sqlite4java/*.java src/main/java/com/almworks/sqlite4java
 cp almworks-sqlite4java-7b55b3eab690/java/javolution/util/stripped/*.java src/main/java/javolution/util/stripped
 cp almworks-sqlite4java-7b55b3eab690/test/com/almworks/sqlite4java/*.java src/test/java/com/almworks/sqlite4java
