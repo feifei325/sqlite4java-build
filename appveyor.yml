@@ -24,9 +24,24 @@ build_script:
   - vcpkg install sqlite3:x64-windows-static
   - build-x64-vs-2017.bat
   - build-x86-vs-2017.bat
+  - rename build-x64\Release\sqlite4java.dll build-x64\Release\sqlite4java-win32-x64.dll
+  - rename build-x86\Release\sqlite4java.dll build-x64\Release\sqlite4java-win32-x86.dll
+  - copy build-x64\Release\sqlite4java-win32-x64.dll .
+  - mvn -q -DskipTests package
+
+test_script:
+  - mvn -q surefire-report:report
+
+after_test:
+  - ps: |
+        $wc = New-Object 'System.Net.WebClient'
+        Get-ChildItem . -Name -Recurse 'TEST-*.xml'  |
+        Foreach-Object {
+            $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $_))
+        }
 
 artifacts:
-  - path: build-x64\Release\sqlite4java.dll
+  - path: build-x64\Release\sqlite4java-win32-x64.dll
     name: sqlite4java x64
-  - path: build-x86\Release\sqlite4java.dll
+  - path: build-x86\Release\sqlite4java-win32-x86.dll
     name: sqlite4java x86
