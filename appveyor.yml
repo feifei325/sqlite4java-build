@@ -36,7 +36,7 @@ build_script:
           ./vcpkg/vcpkg integrate install
           ./vcpkg/vcpkg install sqlite3:x64-linux
         fi
-  - sh: cd $APPVEYOR_BUILD_FOLDER/native && ./build.sh
+  - sh: cd $APPVEYOR_BUILD_FOLDER && ./build.sh
   - cmd: set PATH=%PATH%;%JAVA_HOME%\bin
   - cmd: build.bat
   - cmd: vcpkg install sqlite3:x64-windows-static
