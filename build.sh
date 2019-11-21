@@ -21,3 +21,8 @@ cd vcpkg-master
 ./bootstrap-vcpkg.sh
 vcpkg install sqlite3
 cd ..
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="../vcpkg-master/scripts/buildsystems/vcpkg.cmake"
+cmake --build . --target sqlite4java --config Release
+cmake -- build .
