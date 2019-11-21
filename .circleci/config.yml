@@ -41,5 +41,5 @@ jobs:
           path: ~/junit
 
       - store_artifacts:
-          path: src/main/resources/META-INF/duktape.so
-          destination: duktape.so
+          path: build/libsqlite4java-linux-amd64.so
+          destination: libsqlite4java-linux-amd64.so

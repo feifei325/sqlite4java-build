@@ -26,3 +26,4 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="../vcpkg-master/scripts/buildsystems/vcpkg.cmake"
 cmake --build . --target sqlite4java --config Release
 strip libsqlite4java.so
+mv libsqlite4java.so libsqlite4java-linux-amd64.so
