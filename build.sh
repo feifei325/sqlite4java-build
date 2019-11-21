@@ -1,5 +1,5 @@
 curl -O -L "https://bitbucket.org/almworks/sqlite4java/get/7b55b3eab690.zip"
-unzip 7b55b3eab690.zip
+unzip -q 7b55b3eab690.zip
 mkdir -p src/main/java/com/almworks/sqlite4java
 mkdir -p src/main/java/javolution/util/stripped
 mkdir -p src/main/resources
@@ -16,7 +16,7 @@ cp almworks-sqlite4java-7b55b3eab690/swig/*.h swig
 cp almworks-sqlite4java-7b55b3eab690/native/*.* native
 swig -java -package com.almworks.sqlite4java -outdir swig/stub/com/almworks/sqlite4java -o swig/sqlite_wrap.c swig/sqlite.i
 curl -O -L https://github.com/microsoft/vcpkg/archive/master.zip
-unzip master.zip
+unzip -q master.zip
 cd vcpkg-master
 ./bootstrap-vcpkg.sh
 ./vcpkg install sqlite3

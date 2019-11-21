@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: "circleci/buildpack-deps:bionic"
 
     working_directory: ~/repo
 
@@ -12,6 +12,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get -q --yes install cmake
       - run: sudo apt-get -q --yes install swig
+      - run: sudo apt-get -q --yes install default-jdk
       - run: ./build.sh
 
       - restore_cache:
