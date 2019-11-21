@@ -6,10 +6,10 @@
 
 ### Download
 
-Windows 64-bit (msvc 2017): [sqlite4java-win32-x64.dll]()
+Windows 64-bit (_msvc 2017_): [sqlite4java-win32-x64.dll]()
 
-Windows 32-bit (msvc 2017): [sqlite4java-win32-x86.dll]()
+Windows 32-bit (_msvc 2017_): [sqlite4java-win32-x86.dll]()
 
-GNU/Linux 64-bit (gcc 8): [libsqlite4java-linux-amd64.so]()
+GNU/Linux 64-bit (_gcc 8_): [libsqlite4java-linux-amd64.so]()
 
-sqlite4java (built with jdk 11, compatible with 1.8+): [sqlite4java.jar]()
+sqlite4java (_jdk 8_): [sqlite4java.jar]()
