@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo apt-get update
       - run: sudo apt-get -q --yes install cmake
       - run: sudo apt-get -q --yes install swig
       - run: ./build.sh
