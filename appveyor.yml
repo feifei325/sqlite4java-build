@@ -1,11 +1,21 @@
 version: 1.0.'{build}'
 
 image:
+ - ubuntu1804
  - Visual Studio 2017
 
-environment:
-  matrix:
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+configuration: Release
+
+platform: x64
+
+stack: jdk 11
+
+cache:
+  - vcpkg -> appveyor.yml
+  - /home/appveyor/.m2 -> pom.xml
+  - C:\tools\vcpkg\installed -> appveyor.yml
+  - C:\tools\vcpkg\packages -> appveyor.yml
+  - C:\Users\appveyor\.m2 -> pom.xml
 
 install:
   - ps: |
@@ -19,22 +29,30 @@ install:
       }
       $env:Path +=";C:\maven\apache-maven-3.6.2\bin;%JAVA_HOME%\bin"
 build_script:
-  - set PATH=%PATH%;%JAVA_HOME%\bin
-  - build.bat
-  - vcpkg install sqlite3:x64-windows-static
-  - build-x64-vs-2017.bat
-  - vcpkg install sqlite3:x86-windows-static
-  - build-x86-vs-2017.bat
-  - cd %APPVEYOR_BUILD_FOLDER%\build-x64\Release
-  - rename sqlite4java.dll sqlite4java-win32-x64.dll
-  - cd %APPVEYOR_BUILD_FOLDER%\build-x86\Release
-  - rename sqlite4java.dll sqlite4java-win32-x86.dll
-  - copy %APPVEYOR_BUILD_FOLDER%\build-x64\Release\sqlite4java-win32-x64.dll %APPVEYOR_BUILD_FOLDER%
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - mvn -q -DskipTests package
+  - sh: |
+        if [ ! -d "/home/appveyor/projects/sqlite4java-build/vcpkg" ]; then
+          git clone https://github.com/Microsoft/vcpkg.git
+          CC=gcc-8 CXX=g++-8 ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/vcpkg integrate install
+          ./vcpkg/vcpkg install sqlite3:x64-linux
+        fi
+  - sh: cd $APPVEYOR_BUILD_FOLDER/native && ./build.sh
+  - cmd: set PATH=%PATH%;%JAVA_HOME%\bin
+  - cmd: build.bat
+  - cmd: vcpkg install sqlite3:x64-windows-static
+  - cmd: build-x64-vs-2017.bat
+  - cmd: vcpkg install sqlite3:x86-windows-static
+  - cmd: build-x86-vs-2017.bat
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%\build-x64\Release
+  - cmd: rename sqlite4java.dll sqlite4java-win32-x64.dll
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%\build-x86\Release
+  - cmd: rename sqlite4java.dll sqlite4java-win32-x86.dll
+  - cmd: copy %APPVEYOR_BUILD_FOLDER%\build-x64\Release\sqlite4java-win32-x64.dll %APPVEYOR_BUILD_FOLDER%
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+  - cmd: mvn -q -DskipTests package
 
 test_script:
-  - mvn -q surefire-report:report
+  - cmd: mvn -q surefire-report:report
 
 after_test:
   - ps: |
